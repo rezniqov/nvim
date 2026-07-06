@@ -30,6 +30,8 @@ vim.pack.add({
    { src = gh("stevearc/conform.nvim") },
    -- git signs
    { src = gh("lewis6991/gitsigns.nvim") },
+   -- keymap hints
+   { src = gh("folke/which-key.nvim") },
    -- blink cmp
    { src = gh("saghen/blink.lib") },
    { src = gh("saghen/blink.cmp") },
@@ -87,6 +89,20 @@ require("mason-tool-installer").setup({
 })
 require("lualine").setup()
 require("nvim-web-devicons").setup()
+require("which-key").setup({
+   preset = "helix",
+   spec = {
+      {
+         mode = { "n", "x" },
+         { "<leader>f", group = "find" },
+         { "<leader>x", group = "diagnostics/quickfix" },
+         { "<leader>g", group = "git" },
+         { "<leader>u", group = "ui/toggles" },
+         { "<leader>s", group = "search/symbols" },
+         { "g", group = "goto" },
+      },
+   },
+})
 require("gitsigns").setup({
    current_line_blame = true,
 })
