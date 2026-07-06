@@ -1,3 +1,5 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 local function gh(repo)
    return "https://github.com/" .. repo
 end
@@ -110,12 +112,12 @@ require("gitsigns").setup({
 local function nvim_tree_on_attach(bufnr)
    local api = require("nvim-tree.api")
 
-   -- сохраняем все дефолтные маппинги nvim-tree (<CR>, h, l, R, a, d, r, ...)
+   -- Стандартные бинды
    api.config.mappings.default_on_attach(bufnr)
 
-   local opts = function(desc)
+   local function opts(desc)
       return {
-         desc = desc,
+         desc = "nvim-tree: " .. desc,
          buffer = bufnr,
          noremap = true,
          silent = true,
@@ -123,52 +125,30 @@ local function nvim_tree_on_attach(bufnr)
       }
    end
 
-   -- L: открыть файл, раскрыть закрытую папку или перейти к первому ребенку открытой папки.
-   vim.keymap.set("n", "l", function()
-      local node = api.tree.get_node_under_cursor()
-      if not node then
-         return
-      end
+   -- h — свернуть папку / перейти к родителю
+   vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
 
-      if node.type == "directory" then
-         if node.open then
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            local last_line = vim.api.nvim_buf_line_count(bufnr)
-
-            if cursor[1] < last_line then
-               vim.api.nvim_win_set_cursor(0, { cursor[1] + 1, 0 })
-            end
-         else
-            api.node.expand(node)
-         end
-      else
-         api.node.open.edit(node)
-      end
-   end, opts("Развернуть папку / открыть файл"))
-
-   -- H: свернуть открытую папку или подняться к родителю и свернуть его.
-   vim.keymap.set("n", "h", function()
-      local node = api.tree.get_node_under_cursor()
-      if not node then
-         return
-      end
-      if node.type == "directory" and node.open then
-         api.node.collapse(node)
-      else
-         api.node.navigate.parent_close(node)
-      end
-   end, opts("Свернуть папку / к родителю"))
+   -- l — открыть файл / развернуть папку
+   vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
 end
 
 require("nvim-tree").setup({
-   view = { width = 32 },
+   view = {
+      width = 32,
+   },
    renderer = {
       group_empty = true,
       highlight_git = true,
    },
-   filters = { dotfiles = false },
-   git = { enable = true },
-   diagnostics = { enable = true },
+   filters = {
+      dotfiles = false,
+   },
+   git = {
+      enable = true,
+   },
+   diagnostics = {
+      enable = true,
+   },
    on_attach = nvim_tree_on_attach,
    update_focused_file = {
       enable = true,
