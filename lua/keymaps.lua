@@ -31,10 +31,6 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", {
 
 map("n", "<leader>xq", fzf.quickfix, { desc = "Quickfix list", silent = true })
 map("n", "<leader>b", fzf.buffers, { desc = "buffers", silent = true })
-map("n", "<leader>xd", fzf.diagnostics_document, {
-   desc = "Диагностика (fzf)",
-   silent = true,
-})
 
 -- common
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", {
@@ -54,6 +50,10 @@ map("n", "<leader>q", "<cmd>q<cr>", {
 map("n", "<leader>gg", function()
    Snacks.lazygit()
 end, { desc = "LazyGit", silent = true })
+
+map("n", "<leader>ub", function()
+   require("gitsigns").toggle_current_line_blame()
+end, { desc = "Toggle line blame", silent = true })
 
 --notifications
 map("n", "<leader>n", function()

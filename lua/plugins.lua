@@ -28,6 +28,8 @@ vim.pack.add({
    { src = gh("ibhagwan/fzf-lua") },
    -- formatter
    { src = gh("stevearc/conform.nvim") },
+   -- git signs
+   { src = gh("lewis6991/gitsigns.nvim") },
    -- blink cmp
    { src = gh("saghen/blink.lib") },
    { src = gh("saghen/blink.cmp") },
@@ -85,6 +87,9 @@ require("mason-tool-installer").setup({
 })
 require("lualine").setup()
 require("nvim-web-devicons").setup()
+require("gitsigns").setup({
+   current_line_blame = true,
+})
 
 local function nvim_tree_on_attach(bufnr)
    local api = require("nvim-tree.api")
