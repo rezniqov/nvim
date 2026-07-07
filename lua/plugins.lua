@@ -97,6 +97,7 @@ require("which-key").setup({
       {
          mode = { "n", "x" },
          { "<leader>f", group = "find" },
+         { "<leader>c", group = "code" },
          { "<leader>x", group = "diagnostics/quickfix" },
          { "<leader>g", group = "git" },
          { "<leader>u", group = "ui/toggles" },

@@ -28,6 +28,7 @@ local function lsp_attach(data)
          includeDeclaration = false,
       })
    end, described(bufopts, "Go references"))
+   vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, described(bufopts, "Rename symbol"))
    vim.keymap.set(
       "n",
       "<leader>ss",
