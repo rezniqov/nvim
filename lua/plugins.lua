@@ -86,6 +86,7 @@ require("mason-tool-installer").setup({
       "css-lsp",
       "stylua",
       "prettier",
+      "astro-language-server",
    },
    run_on_start = true,
    auto_update = false,

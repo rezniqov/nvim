@@ -46,6 +46,7 @@ vim.lsp.enable({
    "vtsls",
    "lua_ls",
    "cssls",
+   "astro-language-server",
 })
 
 vim.diagnostic.config({ virtual_text = true })
