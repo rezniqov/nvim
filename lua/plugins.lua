@@ -47,6 +47,7 @@ vim.pack.add({
 
 require("snacks").setup({
    lazygit = { enabled = true },
+   terminal = {},
    indent = { enabled = true },
    image = { enabled = true },
    rename = { enabled = true },
@@ -100,6 +101,7 @@ require("which-key").setup({
          { "<leader>c", group = "code" },
          { "<leader>x", group = "diagnostics/quickfix" },
          { "<leader>g", group = "git" },
+         { "<leader>t", group = "terminal" },
          { "<leader>u", group = "ui/toggles" },
          { "<leader>s", group = "search/symbols" },
          { "g", group = "goto" },
