@@ -3,6 +3,12 @@ local map = vim.keymap.set
 
 local fzf = require("fzf-lua")
 
+for _, mode in ipairs({ "n", "x" }) do
+   for _, lhs in ipairs({ "gra", "gri", "grn", "grr", "grt", "grx" }) do
+      pcall(vim.keymap.del, mode, lhs)
+   end
+end
+
 local function git_root()
    local bufname = vim.api.nvim_buf_get_name(0)
    local path = bufname ~= "" and vim.bo.buftype == "" and bufname or vim.fn.getcwd(0)
@@ -38,7 +44,6 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", {
 })
 
 map("n", "<leader>xq", fzf.quickfix, { desc = "Quickfix list", silent = true })
-map("n", "<leader>b", fzf.buffers, { desc = "buffers", silent = true })
 
 -- common
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", {
@@ -53,6 +58,7 @@ map("n", "<leader>q", "<cmd>q<cr>", {
    desc = "Закрыть окно",
    silent = true,
 })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "закрыть буфер", silent = true })
 
 -- git
 map("n", "<leader>gg", function()
