@@ -110,6 +110,6 @@ map("n", "<leader>td", function()
 end, { desc = "yarn dev", silent = true })
 
 --notifications
-map("n", "<leader>n", function()
+map("n", "<leader>un", function()
    Snacks.notifier.show_history()
 end, { desc = "Notifocation history", silent = true })

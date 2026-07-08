@@ -298,7 +298,7 @@ require("blink.cmp").setup({
       },
    },
 
-   sources = { default = { "lsp" } },
+   sources = { default = { "lsp", "path", "snippets", "buffer" } },
 })
 
 require("nvim-autopairs").setup({})
