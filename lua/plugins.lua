@@ -91,7 +91,26 @@ require("mason-tool-installer").setup({
    run_on_start = true,
    auto_update = false,
 })
-require("lualine").setup()
+local function macro_recording()
+   local register = vim.fn.reg_recording()
+
+   if register == "" then
+      return ""
+   end
+
+   return "recording @" .. register
+end
+
+require("lualine").setup({
+   sections = {
+      lualine_x = {
+         macro_recording,
+         "encoding",
+         "fileformat",
+         "filetype",
+      },
+   },
+})
 require("nvim-web-devicons").setup()
 require("which-key").setup({
    preset = "helix",
