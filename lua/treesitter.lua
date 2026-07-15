@@ -54,7 +54,8 @@ vim.api.nvim_create_autocmd("FileType", {
          -- сворачивание кода по treesitter
          vim.wo.foldmethod = "expr"
          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-         vim.wo.foldenable = false -- не сворачивать при открытии файла
+         vim.wo.foldlevel = 99 -- при открытии файла оставить все уровни раскрытыми
+         vim.wo.foldenable = true
 
          -- treesitter-отступы
          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
