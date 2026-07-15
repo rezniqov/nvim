@@ -44,12 +44,18 @@ end
 
 vim.lsp.enable({
    "vtsls",
+   "eslint",
    "lua_ls",
    "cssls",
    "astro-language-server",
 })
 
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+   virtual_text = true,
+   signs = true,
+   underline = true,
+   severity_sort = true,
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
    group = vim.api.nvim_create_augroup("lsp", {}),

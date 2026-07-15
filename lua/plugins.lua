@@ -83,6 +83,7 @@ require("mason-tool-installer").setup({
    ensure_installed = {
       "lua-language-server",
       "vtsls",
+      "eslint-lsp",
       "css-lsp",
       "stylua",
       "prettier",
@@ -165,6 +166,7 @@ require("nvim-tree").setup({
    },
    filters = {
       dotfiles = false,
+      git_ignored = false,
    },
    git = {
       enable = true,
