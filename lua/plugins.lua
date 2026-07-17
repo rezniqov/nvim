@@ -252,6 +252,9 @@ require("fzf-lua").setup({
    grep = {
       hidden = true,
       ignore_git = false,
+      rg_glob = true,
+      glob_flag = "--glob",
+      glob_separator = "%s%-%-",
       rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --no-ignore -g '!.git' -g '!**/node_modules/**' -g '!**/dist/**' -g '!**/.next/**'",
    },
 })
