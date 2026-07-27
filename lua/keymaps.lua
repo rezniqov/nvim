@@ -62,7 +62,13 @@ map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "закрыть буфер",
 
 -- git
 map("n", "<leader>gg", function()
-   Snacks.lazygit()
+   Snacks.lazygit({
+      win = {
+         on_close = function()
+            require("nvim-tree.api").tree.reload()
+         end,
+      },
+   })
 end, { desc = "LazyGit", silent = true })
 
 map("n", "<leader>ub", function()
