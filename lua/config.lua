@@ -4,8 +4,10 @@ vim.g.mapleader = " "
 
 opt.nu = true
 opt.relativenumber = true
-opt.tabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.autoindent = true
 opt.listchars = "tab: ,multispace:|   ,eol:󰌑"
 opt.winborder = "rounded"
 opt.clipboard = "unnamedplus"

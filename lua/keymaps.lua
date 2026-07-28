@@ -59,7 +59,21 @@ map("n", "<leader>q", "<cmd>q<cr>", {
    silent = true,
 })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "закрыть буфер", silent = true })
-
+map(
+   "v",
+   ">",
+   ">gv",
+   {
+      desc = "Увеличить отступ и сохранить выделение",
+      silent = true,
+   }
+)
+map(
+   "v",
+   "<",
+   "<gv",
+   { desc = "Уменьшить отступ и сохранить выделение", silent = true }
+)
 -- git
 map("n", "<leader>gg", function()
    Snacks.lazygit({

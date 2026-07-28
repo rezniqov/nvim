@@ -28,6 +28,12 @@ local parsers = {
    "query",
 }
 
+-- Для конфигов сохранять отступ предыдущей строки
+local preserve_line_indent = {
+   conf = true,
+   nginx = true,
+}
+
 vim.api.nvim_create_user_command("TSInstallConfigured", function()
    ts.install(parsers)
 end, {
@@ -58,7 +64,11 @@ vim.api.nvim_create_autocmd("FileType", {
          vim.wo.foldenable = true
 
          -- treesitter-отступы
-         vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+         if preserve_line_indent[ft] then
+            vim.bo[args.buf].indentexpr = ""
+         else
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+         end
       end
    end,
 })
