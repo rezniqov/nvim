@@ -46,7 +46,14 @@ vim.pack.add({
 })
 
 require("snacks").setup({
-   lazygit = { enabled = true },
+   lazygit = {
+      enabled = true,
+      config = {
+         gui = {
+            language = "ru",
+         },
+      },
+   },
    terminal = {},
    indent = { enabled = true },
    image = { enabled = true },
