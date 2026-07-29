@@ -1,3 +1,5 @@
+vim.g.nvim_start_time = vim.uv.hrtime()
+
 require("config")
 require("plugins")
 require("keymaps")

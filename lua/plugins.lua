@@ -46,6 +46,60 @@ vim.pack.add({
 })
 
 require("snacks").setup({
+   dashboard = {
+      enabled = true,
+      preset = {
+         header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+         keys = {
+            {
+               icon = " ",
+               key = "f",
+               desc = "Find File",
+               action = function()
+                  require("fzf-lua").files()
+               end,
+            },
+            {
+               icon = " ",
+               key = "t",
+               desc = "Find Text",
+               action = function()
+                  require("fzf-lua").live_grep()
+               end,
+            },
+            {
+               icon = " ",
+               key = "p",
+               desc = "Projects",
+               action = function()
+                  Snacks.picker.projects()
+               end,
+            },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+         },
+      },
+      sections = {
+         { section = "header" },
+         { section = "keys", gap = 1, padding = 1 },
+         function()
+            local elapsed = (vim.uv.hrtime() - vim.g.nvim_start_time) / 1e6
+
+            return {
+               align = "center",
+               text = {
+                  { "⚡ Startup time: ", hl = "footer" },
+                  { ("%.2f ms"):format(elapsed), hl = "special" },
+               },
+            }
+         end,
+      },
+   },
    lazygit = {
       enabled = true,
       config = {
@@ -59,6 +113,7 @@ require("snacks").setup({
    image = { enabled = true },
    rename = { enabled = true },
    notifier = { enabled = true },
+   picker = { enabled = true },
 })
 
 require("noice").setup({
