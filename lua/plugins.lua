@@ -45,6 +45,8 @@ vim.pack.add({
    { src = gh("folke/noice.nvim") },
 })
 
+local dashboard_startup_time
+
 require("snacks").setup({
    dashboard = {
       enabled = true,
@@ -88,13 +90,14 @@ require("snacks").setup({
          { section = "header" },
          { section = "keys", gap = 1, padding = 1 },
          function()
-            local elapsed = (vim.uv.hrtime() - vim.g.nvim_start_time) / 1e6
+            dashboard_startup_time = dashboard_startup_time
+               or (vim.uv.hrtime() - vim.g.nvim_start_time) / 1e6
 
             return {
                align = "center",
                text = {
                   { "⚡ Startup time: ", hl = "footer" },
-                  { ("%.2f ms"):format(elapsed), hl = "special" },
+                  { ("%.2f ms"):format(dashboard_startup_time), hl = "special" },
                },
             }
          end,
