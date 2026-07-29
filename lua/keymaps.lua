@@ -31,6 +31,9 @@ map("n", "<leader>fr", fzf.oldfiles, {
    desc = "Недавние файлы",
    silent = true,
 })
+map("n", "<leader>fp", function()
+   Snacks.picker.projects()
+end, { desc = "Найти проект", silent = true })
 map("n", "<leader>fh", fzf.help_tags, { desc = "Справка Neovim", silent = true })
 map("n", "<leader>fd", fzf.diagnostics_document, {
    desc = "Диагностика в буфере",

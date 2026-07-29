@@ -47,6 +47,14 @@ vim.pack.add({
 
 local dashboard_startup_time
 
+local function switch_project(picker, item)
+   picker:close()
+
+   if item then
+      vim.fn.chdir(item.file)
+   end
+end
+
 require("snacks").setup({
    dashboard = {
       enabled = true,
@@ -116,7 +124,14 @@ require("snacks").setup({
    image = { enabled = true },
    rename = { enabled = true },
    notifier = { enabled = true },
-   picker = { enabled = true },
+   picker = {
+      enabled = true,
+      sources = {
+         projects = {
+            confirm = switch_project,
+         },
+      },
+   },
 })
 
 require("noice").setup({
@@ -222,6 +237,7 @@ local function nvim_tree_on_attach(bufnr)
 end
 
 require("nvim-tree").setup({
+   sync_root_with_cwd = true,
    view = {
       width = 32,
    },
